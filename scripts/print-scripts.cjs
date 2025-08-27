@@ -25,6 +25,7 @@ function formatEntries(pkg) {
       name,
       command: scripts[name],
       description: m.description || '',
+      usage: typeof m.usage === 'string' ? m.usage : '',
       env: m.env || 'dev',
       prodSafe: !!m.prodSafe,
       tags: Array.isArray(m.tags) ? m.tags : [],
@@ -45,6 +46,9 @@ function print(entries) {
     const desc = e.description || '';
     console.log(`${e.name.padEnd(pad)}  ${desc}  (env:${e.env}${prod})${tags}`);
     console.log(`  -> ${e.command}`);
+    if (e.usage && e.usage.trim().length > 0) {
+      console.log(`  usage: ${e.usage}`);
+    }
     // 显著标注 AI_actions 区块
     const banner = '================= AI_actions =================';
     console.log(`  ${banner}`);
