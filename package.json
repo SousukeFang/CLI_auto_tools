@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "help": "node scripts/print-scripts.cjs"
+    "help": "node scripts/print-scripts.cjs",
+    "sum:jira": "node scripts/sum_jira.cjs"
   },
   "scriptsMeta": {
     "help": {
@@ -12,6 +13,12 @@
       "env": "both",
       "prodSafe": true,
       "tags": ["docs", "meta"]
+    },
+    "sum:jira": {
+      "description": "根据Jira工单号生成知识库文章的总结提示词。",
+      "usage": "npm run sum:jira {工单号}",
+      "notes": "此指令会查找指定工单号的XML文件(例如CS-123456.xml)，并将其内容嵌入到预设的提示词模板中。如果找不到文件，会返回错误信息。成功后，将返回的完整提示词用于生成和交付最终结果。",
+      "tags": ["jira", "summary", "prompt"]
     }
   },
   "keywords": [],
