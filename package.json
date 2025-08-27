@@ -1,0 +1,20 @@
+{
+  "name": "cli_auto_tools",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "help": "node scripts/print-scripts.cjs"
+  },
+  "scriptsMeta": {
+    "help": {
+      "description": "显示所有可用的 npm 脚本及其说明",
+      "env": "both",
+      "prodSafe": true,
+      "tags": ["docs", "meta"]
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
