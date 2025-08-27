@@ -27,7 +27,8 @@ function formatEntries(pkg) {
       description: m.description || '',
       env: m.env || 'dev',
       prodSafe: !!m.prodSafe,
-      tags: Array.isArray(m.tags) ? m.tags : []
+      tags: Array.isArray(m.tags) ? m.tags : [],
+      aiActions: typeof m.AI_actions === 'string' ? m.AI_actions : ''
     };
   });
 }
@@ -44,6 +45,14 @@ function print(entries) {
     const desc = e.description || '';
     console.log(`${e.name.padEnd(pad)}  ${desc}  (env:${e.env}${prod})${tags}`);
     console.log(`  -> ${e.command}`);
+    // 显著标注 AI_actions 区块
+    const banner = '================= AI_actions =================';
+    console.log(`  ${banner}`);
+    const content = e.aiActions && e.aiActions.trim().length > 0 ? e.aiActions : '（空）';
+    for (const line of content.split(/\r?\n/)) {
+      console.log(`    ${line}`);
+    }
+    console.log(`  ${'='.repeat(banner.length)}`);
     console.log('');
   }
 }
@@ -60,4 +69,3 @@ function main() {
 }
 
 main();
-

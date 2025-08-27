@@ -67,7 +67,9 @@ async function main() {
     const outputFilePath = path.join(tempDir, `${TICKET_ID}_prompt.md`);
     await fs.writeFile(outputFilePath, finalPrompt, 'utf-8');
 
-    console.log(outputFilePath);
+    console.log(`
+执行成功，提示词文件路径为: ${outputFilePath}`);
+    console.log('请执行这个路径文件中的提示词。\n');
 
   } catch (error) {
     console.error(`处理文件时发生错误: ${error.message}`);
