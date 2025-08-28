@@ -72,6 +72,35 @@
   - `cygpath -u 'E:\AI\tools'` → `/e/AI/tools` (转为 POSIX 路径)
 - **核心原则**: **生产环境（Linux）和 git bash 脚本中，应始终使用 POSIX 路径 (`/`)**。仅在与 Windows 原生工具交互的边缘场景下进行临时转换。
 
+## 技术栈环境细则 (Technical Stack Details)
+
+### **Python 环境**
+
+- **开发环境**: Windows 11, Python 3.13.5
+- **生产环境**: CentOS 7, Python 3.8.18
+- **兼容性要求**: 所有 Python 脚本必须确保在上述两个环境中都能正确运行。
+- **虚拟环境**:
+    - **进入**: `source /d/python/venv/Scripts/activate`
+    - **退出**: `deactivate`
+    - **规范**: 任何 Python 相关的操作（运行脚本、安装库）都必须在激活虚拟环境后执行。
+- **依赖安装**: `pip install <package_name>`
+
+### **Node.js 环境**
+
+- **依赖安装**: `npm install <package_name>`
+
+### **数据库 (MySQL)**
+
+- **连接参数**:
+  ```config
+  # 数据库连接参数
+  'host': '172.16.5.153'
+  'user': 'coremail'
+  'password': '2672512719' # 警告：请勿将密码硬编码在代码或文档中。建议使用 .env 文件或环境变量。
+  'database': 'AI'
+  'port': 3308
+  ```
+
 # 💡 核心行为准则 (Core Behavioral Guidelines)
 
 ## **准则1：处理命令执行失败 (Contingency for Command Failures)**
