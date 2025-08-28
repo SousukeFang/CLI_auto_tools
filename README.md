@@ -72,7 +72,7 @@
 **扩展与规范**
 - 新增脚本：
   - 在 `package.json` 中定义 `scripts` 与 `scriptsMeta`；`scriptsMeta` 至少包含 `description`、`env`、`prodSafe`、`tags`，建议补充 `AI_actions`。
-  - `AI_actions` 用于指导执行后的“下一步”与校验清单，编号步骤、可操作可验证、包含失败处理与环境差异提示。
+  - `AI_actions` 为结构化动作清单，既包含执行 npm 指令前（可调用 mcp 工具）的准备步骤，也包含执行后的校验与后续动作；以【执行这个npm指令】作为唯一分界标识。编号步骤、可操作可验证，并包含失败处理与环境差异提示。
   - 参考 `AGENTS.md` 与 `GEMINI.md` 的“AI_actions 编写规范”小节。
 - 脚本实现：
   - 若为 Bash（生产侧），使用 `#!/usr/bin/env bash` + `set -euo pipefail`；兼容 CentOS 7 的 GNU 工具选项。
