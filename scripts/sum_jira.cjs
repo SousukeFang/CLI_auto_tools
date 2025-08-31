@@ -5,7 +5,7 @@ const path = require('path');
 const TICKET_ID = process.argv[2];
 const SEARCH_ROOT = 'E:\\download';
 const TEMPLATE_PATH = path.join(__dirname, '..', 'prompt', 'sum_jira_to_wiki.md');
-const PLACEHOLDER = '这里将会粘贴xml的完整内容';
+const PLACEHOLDER = '此处将自动替换为通过 mcp_chrome 浏览器工具获取的 JIRA 工单 XML 内容（访问对应工单的 issue-xml 页面）。';
 
 async function findFileRecursive(dir, fileName) {
   try {
