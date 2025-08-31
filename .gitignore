@@ -1,3 +1,8 @@
 
 prompt/temp/*
 !.gitkeep
+
+# Node 依赖目录（忽略）
+node_modules/
+# 兼容历史误拼写目录（若存在则忽略）
+node_moudules/
