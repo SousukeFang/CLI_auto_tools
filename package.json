@@ -8,7 +8,9 @@
     "sum:jira": "node scripts/sum_jira.cjs",
     "clear:prompt": "node scripts/clear_prompts.cjs",
     "sql:exec": "node ./scripts/sql_exec.cjs",
-    "mcp:sum:jira": "node scripts/mcp_sum_jira_print.cjs"
+    "mcp:sum:jira": "node scripts/mcp_sum_jira_print.cjs",
+    "git:check-sync": "bash ./scripts/git_check_sync.sh",
+    "git:sync-to-remote": "bash ./scripts/git_sync_to_remote.sh"
   },
   "scriptsMeta": {
     "help": {
@@ -20,6 +22,30 @@
         "meta"
       ],
       "AI_actions": "1) 阅读输出的“已支持的自动化流程/指令”列表，定位与当前任务最匹配的工具。\n2) 打开所选指令的描述与 AI_actions，确认输入、产物与后续校验方式。\n3) 在本地 Windows 11 + git bash 中执行该指令；若为生产相关，仅通过项目提供的封装脚本触发，避免直接在生产机上运行本地开发脚本。\n4) 按所选指令的 AI_actions 完成后续操作与验证（如检查产物目录、运行最小化校验、生成变更说明等）。\n5) 若当前任务均无适配的自动化流程，则不要强行套用；按原始提示词的手动流程继续执行。\n6) 如需再次查看或切换工具，可重新执行 `npm run help` 并重复上述步骤。"
+    },
+    "git:check-sync": {
+      "description": "用于检查当前本地分支与对应远程分支是否一致。当用户要求检查分支一致性的时候，用此指令。",
+      "usage": "npm run git:check-sync",
+      "env": "dev",
+      "prodSafe": true,
+      "tags": [
+        "git",
+        "check",
+        "sync"
+      ],
+      "AI_actions": "1) 告知用户准备执行本地/远端分支一致性检查；\n2) 【执行这个npm指令】 npm run git:check-sync；\n3) 根据脚本输出汇总结论（是否一致、ahead/behind、工作区状态）并反馈，等待用户下一步指令；\n4) 如果脚本执行失败，根据打印的 git 错误信息（如未配置上游、网络不可达、权限不足等）给出修复建议，然后等待用户下一步指令。"
+    },
+    "git:sync-to-remote": {
+      "description": "用于检查本地未提交的修改，然后创建commit，并上传到远程。当用户要求检查汇总变更并上传的时候，执行此指令。",
+      "usage": "npm run git:sync-to-remote [可选提交说明]",
+      "env": "dev",
+      "prodSafe": false,
+      "tags": [
+        "git",
+        "sync",
+        "push"
+      ],
+      "AI_actions": "1) 告知用户准备汇总本地改动并上传远程；\n2) 【执行这个npm指令】 npm run git:sync-to-remote [可选提交说明]；\n3) 根据脚本输出汇总：提交文件数、commit SHA、推送目标分支/远程，确认是否成功，随后等待用户下一步指令；\n4) 如果脚本执行失败，分析并告知常见解决方法（配置用户名/邮箱、设置上游分支、处理远程拒绝、网络问题、将 node_modules 等大目录加入 .gitignore），然后等待用户下一步指令。"
     },
     "sum:jira": {
       "description": "根据工单号总结知识库。根据Jira工单号生成知识库文章的总结提示词，之后按照提示词文件生成总结。（仅适用于工单文件已经下载的情况）",
