@@ -1,0 +1,8 @@
+description = "清理 prompt/temp 下 7 天前的 *_prompt.md"
+
+prompt = """
+此指令会删除 prompt/temp 目录下最后修改时间超过7天的 `*_prompt.md` 文件，以防临时文件堆积。以下就是执行后的结果，请你汇总结果并告知用户。
+```text
+!{npm run --silent clear:prompt}
+````
+"""

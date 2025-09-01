@@ -1,0 +1,15 @@
+description = "汇总本地改动并推送到远端。可选参数为提交说明"
+
+prompt = """
+目标：创建 commit 并推送到远端。若提供了提交说明，请使用它。
+
+执行记录：
+```text
+!{npm run --silent git:sync-to-remote {{args}}}
+````
+
+请输出：
+
+* 提交文件数、生成的 commit SHA、推送的远端/分支
+* 如失败：给出逐步排错建议（用户名/邮箱缺失、未设 upstream、远端拒绝、网络问题等）
+  """

@@ -1,0 +1,6 @@
+{
+  "name": "cli-tools",
+  "version": "1.0.0",
+  "contextFileName": "GEMINI.md",
+  "excludeTools": ["run_shell_command(rm -rf)"]
+}

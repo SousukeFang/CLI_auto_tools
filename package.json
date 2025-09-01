@@ -59,8 +59,8 @@
     },
     "mcp:sum:jira": {
       "description": "根据工单号总结知识库。根据Jira工单号获取工单内容，然后按照模板规范对工单进行总结，并写入notion中。（仅适用于工单文件未下载的情况。)",
-      "usage": "npm run mcp:sum:jira",
-      "AI_actions": "1) 总结工单{工单号}前，先在 `E:\\download\\` 和 `D:\\Work_Living\\` 目录搜索是否存在 `{工单号}.xml` 文件。\n2) 若文件不存在，调用mcp_chrome的浏览器工具访问 http://jira.mailtech.cn/si/jira.issueviews:issue-xml/{工单号}/{工单号}.xml 并获取其XML内容；若文件存在，则不执行mcp:sum:jira的行动序列，换成执行sum:jira的行动序列。\n3) 【执行这个npm指令】 npm run mcp:sum:jira\n4) 指令将返回总结的模板规范。在生成最终文档前，如果发现缺少必要信息，请先与用户沟通补齐。\n5) 根据模板和XML内容输出markdown格式的知识库文档，并请明确咨询用户，确认是否满意，并告知修正完成后将会写入一个notion页面中。若用户回复不满意，根据用户的反馈意见进行修改并重新输出。\n6) 若用户满意，则调用 Notion mcp的页面创建工具，将 Markdown 格式的笔记内容写入一个新的私有页面，页面标题使用总结结果中的标题。\n7) 如果用户提供了多个工单，请将任务串行处理，一次一个。\n8) 若操作失败，请复核输入参数与权限后重试该指令；持续失败时，记录报错信息并向开发者反馈。",
+      "usage": "npm run mcp:sum:jira {工单号}",
+      "AI_actions": "1) 总结工单{工单号}前，先在 `E:\\download\\` 和 `D:\\Work_Living\\` 目录搜索是否存在 `{工单号}.xml` 文件。\n2) 若文件不存在，调用mcp_chrome的浏览器工具访问 http://jira.mailtech.cn/si/jira.issueviews:issue-xml/{工单号}/{工单号}.xml 并获取其XML内容；若文件存在，则不执行mcp:sum:jira的行动序列，换成执行sum:jira的行动序列。\n3) 【执行这个npm指令】 npm run mcp:sum:jira {工单号}\n4) 指令将返回总结的模板规范。在生成最终文档前，如果发现缺少必要信息，请先与用户沟通补齐。\n5) 根据模板和XML内容输出markdown格式的知识库文档，并请明确咨询用户，确认是否满意，并告知修正完成后将会写入一个notion页面中。若用户回复不满意，根据用户的反馈意见进行修改并重新输出。\n6) 若用户满意，则调用 Notion mcp的页面创建工具，将 Markdown 格式的笔记内容写入一个新的私有页面，页面标题使用总结结果中的标题。\n7) 如果用户提供了多个工单，请将任务串行处理，一次一个。\n8) 若操作失败，请复核输入参数与权限后重试该指令；持续失败时，记录报错信息并向开发者反馈。",
       "tags": [
         "jira",
         "summary",
