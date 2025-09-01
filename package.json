@@ -10,7 +10,8 @@
     "sql:exec": "node ./scripts/sql_exec.cjs",
     "mcp:sum:jira": "node scripts/mcp_sum_jira_print.cjs",
     "git:check-sync": "bash ./scripts/git_check_sync.sh",
-    "git:sync-to-remote": "bash ./scripts/git_sync_to_remote.sh"
+    "git:sync-to-remote": "bash ./scripts/git_sync_to_remote.sh",
+    "git:pull-from-remote": "bash ./scripts/git_pull_from_remote.sh"
   },
   "scriptsMeta": {
     "help": {
@@ -22,6 +23,18 @@
         "meta"
       ],
       "AI_actions": "1) 阅读输出的“已支持的自动化流程/指令”列表，定位与当前任务最匹配的工具。\n2) 打开所选指令的描述与 AI_actions，确认输入、产物与后续校验方式。\n3) 在本地 Windows 11 + git bash 中执行该指令；若为生产相关，仅通过项目提供的封装脚本触发，避免直接在生产机上运行本地开发脚本。\n4) 按所选指令的 AI_actions 完成后续操作与验证（如检查产物目录、运行最小化校验、生成变更说明等）。\n5) 若当前任务均无适配的自动化流程，则不要强行套用；按原始提示词的手动流程继续执行。\n6) 如需再次查看或切换工具，可重新执行 `npm run help` 并重复上述步骤。"
+    },
+    "git:pull-from-remote": {
+      "description": "从远端拉取当前分支更新：落后则拉取；超前则提示；force 时强制覆盖。",
+      "usage": "npm run git:pull-from-remote [force]",
+      "env": "dev",
+      "prodSafe": true,
+      "tags": [
+        "git",
+        "sync",
+        "pull"
+      ],
+      "AI_actions": "1) 说明将尝试从远端拉取更新到当前分支；2) 【执行这个npm指令】 npm run git:pull-from-remote（此时不要带 force 参数）；3) 根据执行结果反馈：\n- 若提示“已从远端 fast-forward 拉取更新”或“本地与远端一致”，告知用户已完成；\n- 若失败且错误为“本地分支领先（ahead）”，提示用户先确认是否需要保留本地分支；\n- 若失败为工作区未提交或其他 Git 报错，分析报错并给出修复建议（提交/暂存/检查网络与权限），等待用户处理；4) 如果用户确认“不需要保留本地分支”，再执行【执行这个npm指令】 npm run git:pull-from-remote force（此时带上 force 参数），并将结果告知用户；5) 如果用户表示“需要保留本地分支”，则结束本次执行并提示用户自行处理（如创建新分支、保留提交、手动合并等）；6) 全部行动完成后，等待用户下一步指令。"
     },
     "git:check-sync": {
       "description": "用于检查当前本地分支与对应远程分支是否一致。当用户要求检查分支一致性的时候，用此指令。",
