@@ -58,6 +58,18 @@
   - `cygpath -u 'E:\AI\tools'` → `/e/AI/tools` (转为 POSIX 路径)
 - **核心原则**: **生产环境（Linux）和 git bash 脚本中，应始终使用 POSIX 路径 (`/`)**。仅在与 Windows 原生工具交互的边缘场景下进行临时转换。
 
+## mcp-chrome可用的背景信息
+
+- 当你浏览jira工单页面时，如果用户要你点击“备注”按钮，将内容写入到备注框时，请注意“备注”按钮元素为
+```html
+<li>
+    <a href="/secure/AddComment!default.jspa?id=982962" id="footer-comment-button" name="add-comment" class="aui-button">
+        <span class="aui-icon aui-icon-small aui-iconfont-comment icon-comment"></span>
+        <span>备注</span>
+    </a>
+</li>
+```
+
 ## 技术栈环境细则 (Technical Stack Details)
 
 ### **Python 环境**
